@@ -5,8 +5,12 @@ interface ITimestamp {
 export class Timestamp implements ITimestamp {
   second: number;
 
-  constructor(second: number) {
-    this.second = second;
+  constructor(date: number | Date) {
+    if (date instanceof Date) {
+      this.second = Math.floor(date.getTime() / 1000);
+    } else {
+      this.second = date;
+    }
   }
 
   getSecond(): number {
@@ -16,8 +20,6 @@ export class Timestamp implements ITimestamp {
   toDate(): Date {
     return new Date(this.second * 1000);
   }
-
-  fromDate(date: Date): void {
-    this.second = Math.floor(date.getTime() / 1000);
-  }
 }
+
+export class Timestamp2 {}
