@@ -20,14 +20,19 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 // lib/index.ts
 var index_exports = {};
 __export(index_exports, {
-  Timestamp: () => Timestamp
+  Timestamp: () => Timestamp,
+  Timestamp2: () => Timestamp2
 });
 module.exports = __toCommonJS(index_exports);
 
 // lib/timestamp/timestamp.ts
 var Timestamp = class {
-  constructor(second) {
-    this.second = second;
+  constructor(date) {
+    if (date instanceof Date) {
+      this.second = Math.floor(date.getTime() / 1e3);
+    } else {
+      this.second = date;
+    }
   }
   getSecond() {
     return this.second;
@@ -35,12 +40,12 @@ var Timestamp = class {
   toDate() {
     return new Date(this.second * 1e3);
   }
-  fromDate(date) {
-    this.second = Math.floor(date.getTime() / 1e3);
-  }
+};
+var Timestamp2 = class {
 };
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  Timestamp
+  Timestamp,
+  Timestamp2
 });
 //# sourceMappingURL=index.js.map

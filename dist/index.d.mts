@@ -3,10 +3,11 @@ interface ITimestamp {
 }
 declare class Timestamp implements ITimestamp {
     second: number;
-    constructor(second: number);
+    constructor(date: number | Date);
     getSecond(): number;
     toDate(): Date;
-    fromDate(date: Date): void;
+}
+declare class Timestamp2 {
 }
 
-export { Timestamp };
+export { Timestamp, Timestamp2 };

@@ -1,7 +1,11 @@
 // lib/timestamp/timestamp.ts
 var Timestamp = class {
-  constructor(second) {
-    this.second = second;
+  constructor(date) {
+    if (date instanceof Date) {
+      this.second = Math.floor(date.getTime() / 1e3);
+    } else {
+      this.second = date;
+    }
   }
   getSecond() {
     return this.second;
@@ -9,11 +13,11 @@ var Timestamp = class {
   toDate() {
     return new Date(this.second * 1e3);
   }
-  fromDate(date) {
-    this.second = Math.floor(date.getTime() / 1e3);
-  }
+};
+var Timestamp2 = class {
 };
 export {
-  Timestamp
+  Timestamp,
+  Timestamp2
 };
 //# sourceMappingURL=index.mjs.map
