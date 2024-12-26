@@ -41,7 +41,7 @@ declare abstract class BaseAbstractRepository<T> extends Repository<T> implement
 
 declare const grpcCatchErrorOrDone: <T>(func: Observable<T>) => Promise<T>;
 
-declare const httpCatchErrorOrDone: <T>(func: any) => Promise<T>;
+declare const httpCatchErrorOrDone: <T>(func: Observable<T>) => Promise<T>;
 
 declare const GrpcStatusToHttpCode: Record<number, number>;
 

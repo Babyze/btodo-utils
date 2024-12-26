@@ -750,19 +750,19 @@ var require_Observable = __commonJS({
     var config_1 = require_config();
     var isFunction_1 = require_isFunction();
     var errorContext_1 = require_errorContext();
-    var Observable2 = function() {
-      function Observable3(subscribe) {
+    var Observable3 = function() {
+      function Observable4(subscribe) {
         if (subscribe) {
           this._subscribe = subscribe;
         }
       }
-      Observable3.prototype.lift = function(operator) {
-        var observable = new Observable3();
+      Observable4.prototype.lift = function(operator) {
+        var observable = new Observable4();
         observable.source = this;
         observable.operator = operator;
         return observable;
       };
-      Observable3.prototype.subscribe = function(observerOrNext, error, complete) {
+      Observable4.prototype.subscribe = function(observerOrNext, error, complete) {
         var _this = this;
         var subscriber = isSubscriber(observerOrNext) ? observerOrNext : new Subscriber_1.SafeSubscriber(observerOrNext, error, complete);
         errorContext_1.errorContext(function() {
@@ -771,14 +771,14 @@ var require_Observable = __commonJS({
         });
         return subscriber;
       };
-      Observable3.prototype._trySubscribe = function(sink) {
+      Observable4.prototype._trySubscribe = function(sink) {
         try {
           return this._subscribe(sink);
         } catch (err) {
           sink.error(err);
         }
       };
-      Observable3.prototype.forEach = function(next, promiseCtor) {
+      Observable4.prototype.forEach = function(next, promiseCtor) {
         var _this = this;
         promiseCtor = getPromiseCtor(promiseCtor);
         return new promiseCtor(function(resolve, reject) {
@@ -797,21 +797,21 @@ var require_Observable = __commonJS({
           _this.subscribe(subscriber);
         });
       };
-      Observable3.prototype._subscribe = function(subscriber) {
+      Observable4.prototype._subscribe = function(subscriber) {
         var _a;
         return (_a = this.source) === null || _a === void 0 ? void 0 : _a.subscribe(subscriber);
       };
-      Observable3.prototype[observable_1.observable] = function() {
+      Observable4.prototype[observable_1.observable] = function() {
         return this;
       };
-      Observable3.prototype.pipe = function() {
+      Observable4.prototype.pipe = function() {
         var operations = [];
         for (var _i = 0; _i < arguments.length; _i++) {
           operations[_i] = arguments[_i];
         }
         return pipe_1.pipeFromArray(operations)(this);
       };
-      Observable3.prototype.toPromise = function(promiseCtor) {
+      Observable4.prototype.toPromise = function(promiseCtor) {
         var _this = this;
         promiseCtor = getPromiseCtor(promiseCtor);
         return new promiseCtor(function(resolve, reject) {
@@ -825,12 +825,12 @@ var require_Observable = __commonJS({
           });
         });
       };
-      Observable3.create = function(subscribe) {
-        return new Observable3(subscribe);
+      Observable4.create = function(subscribe) {
+        return new Observable4(subscribe);
       };
-      return Observable3;
+      return Observable4;
     }();
-    exports.Observable = Observable2;
+    exports.Observable = Observable3;
     function getPromiseCtor(promiseCtor) {
       var _a;
       return (_a = promiseCtor !== null && promiseCtor !== void 0 ? promiseCtor : config_1.config.Promise) !== null && _a !== void 0 ? _a : Promise;
