@@ -1,10 +1,12 @@
-import { catchError, throwError } from "rxjs";
+import { catchError, firstValueFrom, Observable, throwError } from "rxjs";
 
-export const grpcCatchErrorOrDone = (func: any) => {
-  return func.pipe(
-    catchError((err: RpcExceptionResponse) => {
-      return throwError(() => err);
-    })
+export const grpcCatchErrorOrDone = <T>(func: Observable<T>): Promise<T> => {
+  return firstValueFrom<T>(
+    func.pipe(
+      catchError((err: RpcExceptionResponse) => {
+        return throwError(() => err);
+      })
+    )
   );
 };
 
