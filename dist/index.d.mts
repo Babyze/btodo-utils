@@ -1,6 +1,7 @@
 import * as _nestjs_common from '@nestjs/common';
 import { EntityClassOrSchema } from '@nestjs/typeorm/dist/interfaces/entity-class-or-schema.type';
 import { Repository, DeepPartial, FindOneOptions, FindManyOptions } from 'typeorm';
+import { Observable } from 'rxjs';
 
 interface ITimestamp {
     second: number;
@@ -38,7 +39,7 @@ declare abstract class BaseAbstractRepository<T> extends Repository<T> implement
     findOne(options: FindOneOptions<T>): Promise<T>;
 }
 
-declare const grpcCatchErrorOrDone: (func: any) => any;
+declare const grpcCatchErrorOrDone: <T>(func: Observable<T>) => Promise<T>;
 
 declare const httpCatchErrorOrDone: (func: any) => any;
 
