@@ -1,8 +1,8 @@
 import { HttpException, HttpStatus } from "@nestjs/common";
-import { catchError, firstValueFrom, throwError } from "rxjs";
+import { catchError, firstValueFrom, Observable, throwError } from "rxjs";
 import { GrpcStatusToHttpCode } from "./grpc-status-to-http-code.util";
 
-export const httpCatchErrorOrDone = <T>(func: any): Promise<T> => {
+export const httpCatchErrorOrDone = <T>(func: Observable<T>): Promise<T> => {
   return firstValueFrom<T>(
     func.pipe(
       catchError((err: RpcExceptionResponse) => {
