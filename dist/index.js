@@ -3679,7 +3679,7 @@ var require_firstValueFrom = __commonJS({
     exports2.firstValueFrom = void 0;
     var EmptyError_1 = require_EmptyError();
     var Subscriber_1 = require_Subscriber();
-    function firstValueFrom2(source, config) {
+    function firstValueFrom3(source, config) {
       var hasConfig = typeof config === "object";
       return new Promise(function(resolve, reject) {
         var subscriber = new Subscriber_1.SafeSubscriber({
@@ -3699,7 +3699,7 @@ var require_firstValueFrom = __commonJS({
         source.subscribe(subscriber);
       });
     }
-    exports2.firstValueFrom = firstValueFrom2;
+    exports2.firstValueFrom = firstValueFrom3;
   }
 });
 
@@ -9582,15 +9582,17 @@ var GrpcStatusToHttpCode = {
 
 // lib/utils/http-catch-error-or-done.util.ts
 var httpCatchErrorOrDone = (func) => {
-  return func.pipe(
-    (0, import_rxjs2.catchError)((err) => {
-      return (0, import_rxjs2.throwError)(
-        () => new import_common3.HttpException(
-          err.details,
-          GrpcStatusToHttpCode[err.code] ?? import_common3.HttpStatus.BAD_GATEWAY
-        )
-      );
-    })
+  return (0, import_rxjs2.firstValueFrom)(
+    func.pipe(
+      (0, import_rxjs2.catchError)((err) => {
+        return (0, import_rxjs2.throwError)(
+          () => new import_common3.HttpException(
+            err.details,
+            GrpcStatusToHttpCode[err.code] ?? import_common3.HttpStatus.BAD_GATEWAY
+          )
+        );
+      })
+    )
   );
 };
 // Annotate the CommonJS export names for ESM import in node:
