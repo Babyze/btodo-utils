@@ -6,11 +6,17 @@
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsup"
+    "build": "tsup",
+    "prepare": "husky"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "@nestjs/common": "^10.4.15",
+    "@nestjs/typeorm": "^10.0.2",
+    "husky": "^9.1.7",
+    "typeorm": "^0.3.20"
+  },
   "devDependencies": {
     "ts-loader": "^9.5.1",
     "tsup": "^8.3.5",
