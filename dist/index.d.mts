@@ -38,4 +38,10 @@ declare abstract class BaseAbstractRepository<T> extends Repository<T> implement
     findOne(options: FindOneOptions<T>): Promise<T>;
 }
 
-export { BaseAbstractRepository, DatabaseModule, Timestamp, Timestamp2 };
+declare const grpcCatchErrorOrDone: (func: any) => any;
+
+declare const httpCatchErrorOrDone: (func: any) => any;
+
+declare const GrpcStatusToHttpCode: Record<number, number>;
+
+export { BaseAbstractRepository, DatabaseModule, GrpcStatusToHttpCode, Timestamp, Timestamp2, grpcCatchErrorOrDone, httpCatchErrorOrDone };
