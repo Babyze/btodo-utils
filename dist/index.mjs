@@ -9528,11 +9528,12 @@ var BaseAbstractRepository = class extends Repository {
 
 // lib/utils/grpc-catch-error-or-done.util.ts
 var import_rxjs = __toESM(require_cjs());
+import { RpcException } from "@nestjs/microservices";
 var grpcCatchErrorOrDone = (func) => {
   return (0, import_rxjs.firstValueFrom)(
     func.pipe(
       (0, import_rxjs.catchError)((err) => {
-        return (0, import_rxjs.throwError)(() => err);
+        return (0, import_rxjs.throwError)(() => new RpcException(err));
       })
     )
   );

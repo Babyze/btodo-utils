@@ -9544,12 +9544,13 @@ var BaseAbstractRepository = class extends import_typeorm2.Repository {
 };
 
 // lib/utils/grpc-catch-error-or-done.util.ts
+var import_microservices = require("@nestjs/microservices");
 var import_rxjs = __toESM(require_cjs());
 var grpcCatchErrorOrDone = (func) => {
   return (0, import_rxjs.firstValueFrom)(
     func.pipe(
       (0, import_rxjs.catchError)((err) => {
-        return (0, import_rxjs.throwError)(() => err);
+        return (0, import_rxjs.throwError)(() => new import_microservices.RpcException(err));
       })
     )
   );
