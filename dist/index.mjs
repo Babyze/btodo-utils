@@ -9669,12 +9669,27 @@ _init2 = __decoratorStart(null);
 AllExceptionFilter = __decorateElement(_init2, 0, "AllExceptionFilter", _AllExceptionFilter_decorators, AllExceptionFilter);
 __runInitializers(_init2, 1, AllExceptionFilter);
 
+// lib/filters/all-exception-filter.module.ts
+import { Module as Module2 } from "@nestjs/common";
+import { Logger, LoggerModule } from "nestjs-pino";
+var _AllExceptionFilterModule_decorators, _init3;
+_AllExceptionFilterModule_decorators = [Module2({
+  imports: [LoggerModule],
+  providers: [AllExceptionFilter, Logger],
+  exports: [AllExceptionFilter]
+})];
+var AllExceptionFilterModule = class {
+};
+_init3 = __decoratorStart(null);
+AllExceptionFilterModule = __decorateElement(_init3, 0, "AllExceptionFilterModule", _AllExceptionFilterModule_decorators, AllExceptionFilterModule);
+__runInitializers(_init3, 1, AllExceptionFilterModule);
+
 // lib/interceptors/grpc-data-transform-interceptor.interceptor.ts
 var import_rxjs4 = __toESM(require_cjs());
 import {
   Injectable as Injectable2
 } from "@nestjs/common";
-var _GrpcDataTransformInterceptor_decorators, _init3;
+var _GrpcDataTransformInterceptor_decorators, _init4;
 _GrpcDataTransformInterceptor_decorators = [Injectable2()];
 var GrpcDataTransformInterceptor = class {
   constructor(logger) {
@@ -9711,9 +9726,9 @@ var GrpcDataTransformInterceptor = class {
     return value;
   }
 };
-_init3 = __decoratorStart(null);
-GrpcDataTransformInterceptor = __decorateElement(_init3, 0, "GrpcDataTransformInterceptor", _GrpcDataTransformInterceptor_decorators, GrpcDataTransformInterceptor);
-__runInitializers(_init3, 1, GrpcDataTransformInterceptor);
+_init4 = __decoratorStart(null);
+GrpcDataTransformInterceptor = __decorateElement(_init4, 0, "GrpcDataTransformInterceptor", _GrpcDataTransformInterceptor_decorators, GrpcDataTransformInterceptor);
+__runInitializers(_init4, 1, GrpcDataTransformInterceptor);
 
 // lib/pipes/grpc-data-transform-pipe.pipe.ts
 import { Injectable as Injectable3 } from "@nestjs/common";
@@ -10609,7 +10624,7 @@ Long.fromBytesBE = function fromBytesBE(bytes, unsigned) {
 var long_default = Long;
 
 // lib/pipes/grpc-data-transform-pipe.pipe.ts
-var _GrpcDataTransformPipe_decorators, _init4;
+var _GrpcDataTransformPipe_decorators, _init5;
 _GrpcDataTransformPipe_decorators = [Injectable3()];
 var GrpcDataTransformPipe = class {
   transform(value, metadata) {
@@ -10638,11 +10653,12 @@ var GrpcDataTransformPipe = class {
     return value;
   }
 };
-_init4 = __decoratorStart(null);
-GrpcDataTransformPipe = __decorateElement(_init4, 0, "GrpcDataTransformPipe", _GrpcDataTransformPipe_decorators, GrpcDataTransformPipe);
-__runInitializers(_init4, 1, GrpcDataTransformPipe);
+_init5 = __decoratorStart(null);
+GrpcDataTransformPipe = __decorateElement(_init5, 0, "GrpcDataTransformPipe", _GrpcDataTransformPipe_decorators, GrpcDataTransformPipe);
+__runInitializers(_init5, 1, GrpcDataTransformPipe);
 export {
   AllExceptionFilter,
+  AllExceptionFilterModule,
   AlreadyExistError,
   BaseAbstractRepository,
   DatabaseModule,

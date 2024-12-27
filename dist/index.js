@@ -9472,6 +9472,7 @@ var require_cjs = __commonJS({
 var index_exports = {};
 __export(index_exports, {
   AllExceptionFilter: () => AllExceptionFilter,
+  AllExceptionFilterModule: () => AllExceptionFilterModule,
   AlreadyExistError: () => AlreadyExistError,
   BaseAbstractRepository: () => BaseAbstractRepository,
   DatabaseModule: () => DatabaseModule,
@@ -9694,11 +9695,26 @@ _init2 = __decoratorStart(null);
 AllExceptionFilter = __decorateElement(_init2, 0, "AllExceptionFilter", _AllExceptionFilter_decorators, AllExceptionFilter);
 __runInitializers(_init2, 1, AllExceptionFilter);
 
-// lib/interceptors/grpc-data-transform-interceptor.interceptor.ts
+// lib/filters/all-exception-filter.module.ts
 var import_common5 = require("@nestjs/common");
+var import_nestjs_pino = require("nestjs-pino");
+var _AllExceptionFilterModule_decorators, _init3;
+_AllExceptionFilterModule_decorators = [(0, import_common5.Module)({
+  imports: [import_nestjs_pino.LoggerModule],
+  providers: [AllExceptionFilter, import_nestjs_pino.Logger],
+  exports: [AllExceptionFilter]
+})];
+var AllExceptionFilterModule = class {
+};
+_init3 = __decoratorStart(null);
+AllExceptionFilterModule = __decorateElement(_init3, 0, "AllExceptionFilterModule", _AllExceptionFilterModule_decorators, AllExceptionFilterModule);
+__runInitializers(_init3, 1, AllExceptionFilterModule);
+
+// lib/interceptors/grpc-data-transform-interceptor.interceptor.ts
+var import_common6 = require("@nestjs/common");
 var import_rxjs4 = __toESM(require_cjs());
-var _GrpcDataTransformInterceptor_decorators, _init3;
-_GrpcDataTransformInterceptor_decorators = [(0, import_common5.Injectable)()];
+var _GrpcDataTransformInterceptor_decorators, _init4;
+_GrpcDataTransformInterceptor_decorators = [(0, import_common6.Injectable)()];
 var GrpcDataTransformInterceptor = class {
   constructor(logger) {
     this.logger = logger;
@@ -9734,12 +9750,12 @@ var GrpcDataTransformInterceptor = class {
     return value;
   }
 };
-_init3 = __decoratorStart(null);
-GrpcDataTransformInterceptor = __decorateElement(_init3, 0, "GrpcDataTransformInterceptor", _GrpcDataTransformInterceptor_decorators, GrpcDataTransformInterceptor);
-__runInitializers(_init3, 1, GrpcDataTransformInterceptor);
+_init4 = __decoratorStart(null);
+GrpcDataTransformInterceptor = __decorateElement(_init4, 0, "GrpcDataTransformInterceptor", _GrpcDataTransformInterceptor_decorators, GrpcDataTransformInterceptor);
+__runInitializers(_init4, 1, GrpcDataTransformInterceptor);
 
 // lib/pipes/grpc-data-transform-pipe.pipe.ts
-var import_common6 = require("@nestjs/common");
+var import_common7 = require("@nestjs/common");
 
 // node_modules/long/index.js
 var wasm = null;
@@ -10632,8 +10648,8 @@ Long.fromBytesBE = function fromBytesBE(bytes, unsigned) {
 var long_default = Long;
 
 // lib/pipes/grpc-data-transform-pipe.pipe.ts
-var _GrpcDataTransformPipe_decorators, _init4;
-_GrpcDataTransformPipe_decorators = [(0, import_common6.Injectable)()];
+var _GrpcDataTransformPipe_decorators, _init5;
+_GrpcDataTransformPipe_decorators = [(0, import_common7.Injectable)()];
 var GrpcDataTransformPipe = class {
   transform(value, metadata) {
     if (metadata.type === "custom") {
@@ -10661,12 +10677,13 @@ var GrpcDataTransformPipe = class {
     return value;
   }
 };
-_init4 = __decoratorStart(null);
-GrpcDataTransformPipe = __decorateElement(_init4, 0, "GrpcDataTransformPipe", _GrpcDataTransformPipe_decorators, GrpcDataTransformPipe);
-__runInitializers(_init4, 1, GrpcDataTransformPipe);
+_init5 = __decoratorStart(null);
+GrpcDataTransformPipe = __decorateElement(_init5, 0, "GrpcDataTransformPipe", _GrpcDataTransformPipe_decorators, GrpcDataTransformPipe);
+__runInitializers(_init5, 1, GrpcDataTransformPipe);
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   AllExceptionFilter,
+  AllExceptionFilterModule,
   AlreadyExistError,
   BaseAbstractRepository,
   DatabaseModule,

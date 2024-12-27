@@ -80,6 +80,9 @@ declare class AllExceptionFilter implements ExceptionFilter {
     catch(exception: any): Observable<any>;
 }
 
+declare class AllExceptionFilterModule {
+}
+
 declare class GrpcDataTransformInterceptor implements NestInterceptor {
     private readonly logger;
     constructor(logger: Logger);
@@ -93,4 +96,4 @@ declare class GrpcDataTransformPipe implements PipeTransform {
     private transformValue;
 }
 
-export { AllExceptionFilter, AlreadyExistError, BaseAbstractRepository, DatabaseModule, GrpcDataTransformInterceptor, GrpcDataTransformPipe, GrpcStatusToHttpCode, Hash, InvalidAgrumentError, NotFoundError, PasswordUtils, Timestamp, UnknownError, grpcCatchErrorOrDone, httpCatchErrorOrDone };
+export { AllExceptionFilter, AllExceptionFilterModule, AlreadyExistError, BaseAbstractRepository, DatabaseModule, GrpcDataTransformInterceptor, GrpcDataTransformPipe, GrpcStatusToHttpCode, Hash, InvalidAgrumentError, NotFoundError, PasswordUtils, Timestamp, UnknownError, grpcCatchErrorOrDone, httpCatchErrorOrDone };
