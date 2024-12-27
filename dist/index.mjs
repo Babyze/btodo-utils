@@ -9478,8 +9478,6 @@ var Timestamp = class {
     return new Date(this.second * 1e3);
   }
 };
-var Timestamp2 = class {
-};
 
 // lib/database/database.module.ts
 import { Module } from "@nestjs/common";
@@ -9579,12 +9577,77 @@ var httpCatchErrorOrDone = (func) => {
     )
   );
 };
+
+// lib/utils/hash.utils.ts
+import * as bcrypt from "bcrypt";
+var Hash = {
+  generateSalt: (round = 10) => {
+    return bcrypt.genSaltSync(round);
+  },
+  generateHash: (data, salt) => {
+    return bcrypt.hashSync(data, salt);
+  },
+  compare: (data, encrypted) => {
+    return bcrypt.compareSync(data, encrypted);
+  },
+  getRounds: (encrypted) => {
+    return bcrypt.getRounds(encrypted);
+  }
+};
+
+// lib/utils/password.utils.ts
+var PasswordUtils = {
+  encrypedPassword: (password, round) => {
+    const salt = Hash.generateSalt(round);
+    return Hash.generateHash(password, salt);
+  },
+  isValidPassword(password, passwordEncryped) {
+    return Hash.compare(password, passwordEncryped);
+  }
+};
+
+// lib/errors/error.ts
+import { status as status2 } from "@grpc/grpc-js";
+import { RpcException as RpcException2 } from "@nestjs/microservices";
+var Error2 = class extends RpcException2 {
+  constructor(code, message = "") {
+    super({
+      code,
+      message
+    });
+  }
+};
+var NotFoundError = class extends Error2 {
+  constructor(message = "Data not found") {
+    super(status2.NOT_FOUND, message);
+  }
+};
+var InvalidAgrumentError = class extends Error2 {
+  constructor(message) {
+    super(status2.INVALID_ARGUMENT, message);
+  }
+};
+var UnknownError = class extends Error2 {
+  constructor(message) {
+    super(status2.UNKNOWN, message);
+  }
+};
+var AlreadyExistError = class extends Error2 {
+  constructor(message) {
+    super(status2.ALREADY_EXISTS, message);
+  }
+};
 export {
+  AlreadyExistError,
   BaseAbstractRepository,
   DatabaseModule,
   GrpcStatusToHttpCode,
+  Hash,
+  InvalidAgrumentError,
+  NotFoundError,
+  PasswordUtils,
   Timestamp,
-  Timestamp2,
+  UnknownError,
   grpcCatchErrorOrDone,
   httpCatchErrorOrDone
 };

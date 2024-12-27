@@ -16,6 +16,8 @@
     "@nestjs/common": "^10.4.15",
     "@nestjs/microservices": "^10.4.15",
     "@nestjs/typeorm": "^10.0.2",
+    "bcrypt": "^5.1.1",
+    "class-validator": "^0.14.1",
     "husky": "^9.1.7",
     "typeorm": "^0.3.20"
   },

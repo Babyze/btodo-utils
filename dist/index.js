@@ -9471,11 +9471,16 @@ var require_cjs = __commonJS({
 // lib/index.ts
 var index_exports = {};
 __export(index_exports, {
+  AlreadyExistError: () => AlreadyExistError,
   BaseAbstractRepository: () => BaseAbstractRepository,
   DatabaseModule: () => DatabaseModule,
   GrpcStatusToHttpCode: () => GrpcStatusToHttpCode,
+  Hash: () => Hash,
+  InvalidAgrumentError: () => InvalidAgrumentError,
+  NotFoundError: () => NotFoundError,
+  PasswordUtils: () => PasswordUtils,
   Timestamp: () => Timestamp,
-  Timestamp2: () => Timestamp2,
+  UnknownError: () => UnknownError,
   grpcCatchErrorOrDone: () => grpcCatchErrorOrDone,
   httpCatchErrorOrDone: () => httpCatchErrorOrDone
 });
@@ -9496,8 +9501,6 @@ var Timestamp = class {
   toDate() {
     return new Date(this.second * 1e3);
   }
-};
-var Timestamp2 = class {
 };
 
 // lib/database/database.module.ts
@@ -9596,13 +9599,78 @@ var httpCatchErrorOrDone = (func) => {
     )
   );
 };
+
+// lib/utils/hash.utils.ts
+var bcrypt = __toESM(require("bcrypt"));
+var Hash = {
+  generateSalt: (round = 10) => {
+    return bcrypt.genSaltSync(round);
+  },
+  generateHash: (data, salt) => {
+    return bcrypt.hashSync(data, salt);
+  },
+  compare: (data, encrypted) => {
+    return bcrypt.compareSync(data, encrypted);
+  },
+  getRounds: (encrypted) => {
+    return bcrypt.getRounds(encrypted);
+  }
+};
+
+// lib/utils/password.utils.ts
+var PasswordUtils = {
+  encrypedPassword: (password, round) => {
+    const salt = Hash.generateSalt(round);
+    return Hash.generateHash(password, salt);
+  },
+  isValidPassword(password, passwordEncryped) {
+    return Hash.compare(password, passwordEncryped);
+  }
+};
+
+// lib/errors/error.ts
+var import_grpc_js2 = require("@grpc/grpc-js");
+var import_microservices2 = require("@nestjs/microservices");
+var Error2 = class extends import_microservices2.RpcException {
+  constructor(code, message = "") {
+    super({
+      code,
+      message
+    });
+  }
+};
+var NotFoundError = class extends Error2 {
+  constructor(message = "Data not found") {
+    super(import_grpc_js2.status.NOT_FOUND, message);
+  }
+};
+var InvalidAgrumentError = class extends Error2 {
+  constructor(message) {
+    super(import_grpc_js2.status.INVALID_ARGUMENT, message);
+  }
+};
+var UnknownError = class extends Error2 {
+  constructor(message) {
+    super(import_grpc_js2.status.UNKNOWN, message);
+  }
+};
+var AlreadyExistError = class extends Error2 {
+  constructor(message) {
+    super(import_grpc_js2.status.ALREADY_EXISTS, message);
+  }
+};
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
+  AlreadyExistError,
   BaseAbstractRepository,
   DatabaseModule,
   GrpcStatusToHttpCode,
+  Hash,
+  InvalidAgrumentError,
+  NotFoundError,
+  PasswordUtils,
   Timestamp,
-  Timestamp2,
+  UnknownError,
   grpcCatchErrorOrDone,
   httpCatchErrorOrDone
 });

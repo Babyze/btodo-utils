@@ -2,6 +2,7 @@ import * as _nestjs_common from '@nestjs/common';
 import { EntityClassOrSchema } from '@nestjs/typeorm/dist/interfaces/entity-class-or-schema.type';
 import { Repository, DeepPartial, FindOneOptions, FindManyOptions } from 'typeorm';
 import { Observable } from 'rxjs';
+import { RpcException } from '@nestjs/microservices';
 
 interface ITimestamp {
     second: number;
@@ -11,8 +12,6 @@ declare class Timestamp implements ITimestamp {
     constructor(date: number | Date);
     getSecond(): number;
     toDate(): Date;
-}
-declare class Timestamp2 {
 }
 
 declare class DatabaseModule {
@@ -45,4 +44,32 @@ declare const httpCatchErrorOrDone: <T>(func: Observable<T>) => Promise<T>;
 
 declare const GrpcStatusToHttpCode: Record<number, number>;
 
-export { BaseAbstractRepository, DatabaseModule, GrpcStatusToHttpCode, Timestamp, Timestamp2, grpcCatchErrorOrDone, httpCatchErrorOrDone };
+declare const Hash: {
+    generateSalt: (round?: number) => any;
+    generateHash: (data: string | Buffer, salt: string) => any;
+    compare: (data: string | Buffer, encrypted: string) => any;
+    getRounds: (encrypted: string) => any;
+};
+
+declare const PasswordUtils: {
+    encrypedPassword: (password: string, round?: number) => any;
+    isValidPassword(password: string, passwordEncryped: string): boolean;
+};
+
+declare abstract class Error extends RpcException {
+    constructor(code: number, message?: string);
+}
+declare class NotFoundError extends Error {
+    constructor(message?: string);
+}
+declare class InvalidAgrumentError extends Error {
+    constructor(message?: string);
+}
+declare class UnknownError extends Error {
+    constructor(message?: string);
+}
+declare class AlreadyExistError extends Error {
+    constructor(message?: string);
+}
+
+export { AlreadyExistError, BaseAbstractRepository, DatabaseModule, GrpcStatusToHttpCode, Hash, InvalidAgrumentError, NotFoundError, PasswordUtils, Timestamp, UnknownError, grpcCatchErrorOrDone, httpCatchErrorOrDone };

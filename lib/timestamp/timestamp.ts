@@ -21,5 +21,3 @@ export class Timestamp implements ITimestamp {
     return new Date(this.second * 1000);
   }
 }
-
-export class Timestamp2 {}
