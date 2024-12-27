@@ -6,13 +6,22 @@ import {
 } from "@nestjs/common";
 import { map, Observable } from "rxjs";
 import { Timestamp } from "../timestamp";
+import { Logger } from "nestjs-pino";
 
 @Injectable()
 export class GrpcDataTransformInterceptor implements NestInterceptor {
+  constructor(private readonly logger: Logger) {}
+
   intercept(
     context: ExecutionContext,
     next: CallHandler<any>
   ): Observable<any> | Promise<Observable<any>> {
+    this.logger.log(
+      `Data: ${JSON.stringify(
+        context.switchToRpc().getData()
+      )} - Context: ${JSON.stringify(context.switchToRpc().getContext())}`
+    );
+
     return next.handle().pipe(map((data: any) => this.transformData(data)));
   }
 

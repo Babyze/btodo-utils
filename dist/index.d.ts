@@ -4,6 +4,7 @@ import { EntityClassOrSchema } from '@nestjs/typeorm/dist/interfaces/entity-clas
 import { Repository, DeepPartial, FindOneOptions, FindManyOptions } from 'typeorm';
 import { Observable } from 'rxjs';
 import { RpcException } from '@nestjs/microservices';
+import { Logger } from 'nestjs-pino';
 
 interface ITimestamp {
     second: number;
@@ -74,10 +75,14 @@ declare class AlreadyExistError extends Error {
 }
 
 declare class AllExceptionFilter implements ExceptionFilter {
+    private readonly logger;
+    constructor(logger: Logger);
     catch(exception: any): Observable<any>;
 }
 
 declare class GrpcDataTransformInterceptor implements NestInterceptor {
+    private readonly logger;
+    constructor(logger: Logger);
     intercept(context: ExecutionContext, next: CallHandler<any>): Observable<any> | Promise<Observable<any>>;
     private transformData;
     private transformValue;

@@ -9646,7 +9646,11 @@ import { ValidationError } from "class-validator";
 var _AllExceptionFilter_decorators, _init2;
 _AllExceptionFilter_decorators = [Catch()];
 var AllExceptionFilter = class {
+  constructor(logger) {
+    this.logger = logger;
+  }
   catch(exception) {
+    this.logger.error(exception);
     if (exception instanceof RpcException3) {
       return (0, import_rxjs3.throwError)(() => exception.getError());
     }
@@ -9673,7 +9677,15 @@ import {
 var _GrpcDataTransformInterceptor_decorators, _init3;
 _GrpcDataTransformInterceptor_decorators = [Injectable()];
 var GrpcDataTransformInterceptor = class {
+  constructor(logger) {
+    this.logger = logger;
+  }
   intercept(context, next) {
+    this.logger.log(
+      `Data: ${JSON.stringify(
+        context.switchToRpc().getData()
+      )} - Context: ${JSON.stringify(context.switchToRpc().getContext())}`
+    );
     return next.handle().pipe((0, import_rxjs4.map)((data) => this.transformData(data)));
   }
   transformData(value) {

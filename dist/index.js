@@ -9671,7 +9671,11 @@ var import_rxjs3 = __toESM(require_cjs());
 var _AllExceptionFilter_decorators, _init2;
 _AllExceptionFilter_decorators = [(0, import_common4.Catch)()];
 var AllExceptionFilter = class {
+  constructor(logger) {
+    this.logger = logger;
+  }
   catch(exception) {
+    this.logger.error(exception);
     if (exception instanceof import_microservices3.RpcException) {
       return (0, import_rxjs3.throwError)(() => exception.getError());
     }
@@ -9696,7 +9700,15 @@ var import_rxjs4 = __toESM(require_cjs());
 var _GrpcDataTransformInterceptor_decorators, _init3;
 _GrpcDataTransformInterceptor_decorators = [(0, import_common5.Injectable)()];
 var GrpcDataTransformInterceptor = class {
+  constructor(logger) {
+    this.logger = logger;
+  }
   intercept(context, next) {
+    this.logger.log(
+      `Data: ${JSON.stringify(
+        context.switchToRpc().getData()
+      )} - Context: ${JSON.stringify(context.switchToRpc().getContext())}`
+    );
     return next.handle().pipe((0, import_rxjs4.map)((data) => this.transformData(data)));
   }
   transformData(value) {
