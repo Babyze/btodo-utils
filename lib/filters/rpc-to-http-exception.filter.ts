@@ -1,4 +1,4 @@
-import { Catch, ExceptionFilter } from "@nestjs/common";
+import { Catch, ExceptionFilter, Injectable } from "@nestjs/common";
 import { RpcException } from "@nestjs/microservices";
 import { ValidationError } from "class-validator";
 import { Observable, throwError } from "rxjs";
@@ -6,6 +6,7 @@ import { InvalidAgrumentError, UnknownError } from "../errors/error";
 import { Logger } from "nestjs-pino";
 
 @Catch()
+@Injectable()
 export class AllExceptionFilter implements ExceptionFilter {
   constructor(private readonly logger: Logger) {}
   catch(exception: any): Observable<any> {

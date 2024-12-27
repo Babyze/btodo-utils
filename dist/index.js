@@ -9669,7 +9669,7 @@ var import_microservices3 = require("@nestjs/microservices");
 var import_class_validator = require("class-validator");
 var import_rxjs3 = __toESM(require_cjs());
 var _AllExceptionFilter_decorators, _init2;
-_AllExceptionFilter_decorators = [(0, import_common4.Catch)()];
+_AllExceptionFilter_decorators = [(0, import_common4.Catch)(), (0, import_common4.Injectable)()];
 var AllExceptionFilter = class {
   constructor(logger) {
     this.logger = logger;

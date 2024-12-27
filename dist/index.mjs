@@ -9640,11 +9640,11 @@ var AlreadyExistError = class extends Error2 {
 
 // lib/filters/rpc-to-http-exception.filter.ts
 var import_rxjs3 = __toESM(require_cjs());
-import { Catch } from "@nestjs/common";
+import { Catch, Injectable } from "@nestjs/common";
 import { RpcException as RpcException3 } from "@nestjs/microservices";
 import { ValidationError } from "class-validator";
 var _AllExceptionFilter_decorators, _init2;
-_AllExceptionFilter_decorators = [Catch()];
+_AllExceptionFilter_decorators = [Catch(), Injectable()];
 var AllExceptionFilter = class {
   constructor(logger) {
     this.logger = logger;
@@ -9672,10 +9672,10 @@ __runInitializers(_init2, 1, AllExceptionFilter);
 // lib/interceptors/grpc-data-transform-interceptor.interceptor.ts
 var import_rxjs4 = __toESM(require_cjs());
 import {
-  Injectable
+  Injectable as Injectable2
 } from "@nestjs/common";
 var _GrpcDataTransformInterceptor_decorators, _init3;
-_GrpcDataTransformInterceptor_decorators = [Injectable()];
+_GrpcDataTransformInterceptor_decorators = [Injectable2()];
 var GrpcDataTransformInterceptor = class {
   constructor(logger) {
     this.logger = logger;
@@ -9716,7 +9716,7 @@ GrpcDataTransformInterceptor = __decorateElement(_init3, 0, "GrpcDataTransformIn
 __runInitializers(_init3, 1, GrpcDataTransformInterceptor);
 
 // lib/pipes/grpc-data-transform-pipe.pipe.ts
-import { Injectable as Injectable2 } from "@nestjs/common";
+import { Injectable as Injectable3 } from "@nestjs/common";
 
 // node_modules/long/index.js
 var wasm = null;
@@ -10610,7 +10610,7 @@ var long_default = Long;
 
 // lib/pipes/grpc-data-transform-pipe.pipe.ts
 var _GrpcDataTransformPipe_decorators, _init4;
-_GrpcDataTransformPipe_decorators = [Injectable2()];
+_GrpcDataTransformPipe_decorators = [Injectable3()];
 var GrpcDataTransformPipe = class {
   transform(value, metadata) {
     if (metadata.type === "custom") {
