@@ -1,10 +1,8 @@
 import * as _nestjs_common from '@nestjs/common';
-import { ExceptionFilter, NestInterceptor, ExecutionContext, CallHandler, PipeTransform, ArgumentMetadata } from '@nestjs/common';
 import { EntityClassOrSchema } from '@nestjs/typeorm/dist/interfaces/entity-class-or-schema.type';
 import { Repository, DeepPartial, FindOneOptions, FindManyOptions } from 'typeorm';
 import { Observable } from 'rxjs';
 import { RpcException } from '@nestjs/microservices';
-import { Logger } from 'nestjs-pino';
 
 interface ITimestamp {
     second: number;
@@ -74,26 +72,4 @@ declare class AlreadyExistError extends Error {
     constructor(message?: string);
 }
 
-declare class AllExceptionFilter implements ExceptionFilter {
-    private readonly logger;
-    constructor(logger: Logger);
-    catch(exception: any): Observable<any>;
-}
-
-declare class AllExceptionFilterModule {
-}
-
-declare class GrpcDataTransformInterceptor implements NestInterceptor {
-    private readonly logger;
-    constructor(logger: Logger);
-    intercept(context: ExecutionContext, next: CallHandler<any>): Observable<any> | Promise<Observable<any>>;
-    private transformData;
-    private transformValue;
-}
-
-declare class GrpcDataTransformPipe implements PipeTransform {
-    transform(value: any, metadata: ArgumentMetadata): any;
-    private transformValue;
-}
-
-export { AllExceptionFilter, AllExceptionFilterModule, AlreadyExistError, BaseAbstractRepository, DatabaseModule, GrpcDataTransformInterceptor, GrpcDataTransformPipe, GrpcStatusToHttpCode, Hash, InvalidAgrumentError, NotFoundError, PasswordUtils, Timestamp, UnknownError, grpcCatchErrorOrDone, httpCatchErrorOrDone };
+export { AlreadyExistError, BaseAbstractRepository, DatabaseModule, GrpcStatusToHttpCode, Hash, InvalidAgrumentError, NotFoundError, PasswordUtils, Timestamp, UnknownError, grpcCatchErrorOrDone, httpCatchErrorOrDone };
