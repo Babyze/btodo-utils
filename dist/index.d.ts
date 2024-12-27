@@ -56,6 +56,10 @@ declare const PasswordUtils: {
     isValidPassword(password: string, passwordEncryped: string): boolean;
 };
 
+declare const transformDataTogRPCData: (value: any) => any;
+
+declare const transformgRPCToData: (value: any) => any;
+
 declare abstract class Error extends RpcException {
     constructor(code: number, message?: string);
 }
@@ -72,4 +76,4 @@ declare class AlreadyExistError extends Error {
     constructor(message?: string);
 }
 
-export { AlreadyExistError, BaseAbstractRepository, DatabaseModule, GrpcStatusToHttpCode, Hash, InvalidAgrumentError, NotFoundError, PasswordUtils, Timestamp, UnknownError, grpcCatchErrorOrDone, httpCatchErrorOrDone };
+export { AlreadyExistError, BaseAbstractRepository, DatabaseModule, GrpcStatusToHttpCode, Hash, InvalidAgrumentError, NotFoundError, PasswordUtils, Timestamp, UnknownError, grpcCatchErrorOrDone, httpCatchErrorOrDone, transformDataTogRPCData, transformgRPCToData };
