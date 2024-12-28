@@ -9471,6 +9471,7 @@ var require_cjs = __commonJS({
 // lib/index.ts
 var index_exports = {};
 __export(index_exports, {
+  AbortedError: () => AbortedError,
   AlreadyExistError: () => AlreadyExistError,
   BaseAbstractRepository: () => BaseAbstractRepository,
   DatabaseModule: () => DatabaseModule,
@@ -9480,6 +9481,7 @@ __export(index_exports, {
   NotFoundError: () => NotFoundError,
   PasswordUtils: () => PasswordUtils,
   Timestamp: () => Timestamp,
+  UnauthenticatedError: () => UnauthenticatedError,
   UnknownError: () => UnknownError,
   grpcCatchErrorOrDone: () => grpcCatchErrorOrDone,
   httpCatchErrorOrDone: () => httpCatchErrorOrDone,
@@ -10606,8 +10608,19 @@ var AlreadyExistError = class extends Error2 {
     super(import_grpc_js2.status.ALREADY_EXISTS, message);
   }
 };
+var UnauthenticatedError = class extends Error2 {
+  constructor(message) {
+    super(import_grpc_js2.status.UNAUTHENTICATED, message);
+  }
+};
+var AbortedError = class extends Error2 {
+  constructor(message) {
+    super(import_grpc_js2.status.ABORTED, message);
+  }
+};
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
+  AbortedError,
   AlreadyExistError,
   BaseAbstractRepository,
   DatabaseModule,
@@ -10617,6 +10630,7 @@ var AlreadyExistError = class extends Error2 {
   NotFoundError,
   PasswordUtils,
   Timestamp,
+  UnauthenticatedError,
   UnknownError,
   grpcCatchErrorOrDone,
   httpCatchErrorOrDone,

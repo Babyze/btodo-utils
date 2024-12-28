@@ -75,5 +75,11 @@ declare class UnknownError extends Error {
 declare class AlreadyExistError extends Error {
     constructor(message?: string);
 }
+declare class UnauthenticatedError extends Error {
+    constructor(message?: string);
+}
+declare class AbortedError extends Error {
+    constructor(message?: string);
+}
 
-export { AlreadyExistError, BaseAbstractRepository, DatabaseModule, GrpcStatusToHttpCode, Hash, InvalidAgrumentError, NotFoundError, PasswordUtils, Timestamp, UnknownError, grpcCatchErrorOrDone, httpCatchErrorOrDone, transformDataTogRPCData, transformgRPCToData };
+export { AbortedError, AlreadyExistError, BaseAbstractRepository, DatabaseModule, GrpcStatusToHttpCode, Hash, InvalidAgrumentError, NotFoundError, PasswordUtils, Timestamp, UnauthenticatedError, UnknownError, grpcCatchErrorOrDone, httpCatchErrorOrDone, transformDataTogRPCData, transformgRPCToData };

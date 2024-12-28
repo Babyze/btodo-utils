@@ -34,4 +34,23 @@ class AlreadyExistError extends Error {
   }
 }
 
-export { NotFoundError, InvalidAgrumentError, UnknownError, AlreadyExistError };
+class UnauthenticatedError extends Error {
+  constructor(message?: string) {
+    super(status.UNAUTHENTICATED, message);
+  }
+}
+
+class AbortedError extends Error {
+  constructor(message?: string) {
+    super(status.ABORTED, message);
+  }
+}
+
+export {
+  NotFoundError,
+  InvalidAgrumentError,
+  UnknownError,
+  AlreadyExistError,
+  UnauthenticatedError,
+  AbortedError,
+};

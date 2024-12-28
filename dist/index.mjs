@@ -10582,7 +10582,18 @@ var AlreadyExistError = class extends Error2 {
     super(status2.ALREADY_EXISTS, message);
   }
 };
+var UnauthenticatedError = class extends Error2 {
+  constructor(message) {
+    super(status2.UNAUTHENTICATED, message);
+  }
+};
+var AbortedError = class extends Error2 {
+  constructor(message) {
+    super(status2.ABORTED, message);
+  }
+};
 export {
+  AbortedError,
   AlreadyExistError,
   BaseAbstractRepository,
   DatabaseModule,
@@ -10592,6 +10603,7 @@ export {
   NotFoundError,
   PasswordUtils,
   Timestamp,
+  UnauthenticatedError,
   UnknownError,
   grpcCatchErrorOrDone,
   httpCatchErrorOrDone,
