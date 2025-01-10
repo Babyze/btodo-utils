@@ -1,13 +1,7 @@
 import { Timestamp } from "../timestamp";
 import Long from "long";
 
-export const transformgRPCToData = (value: any) => {
-  if (Array.isArray(value)) {
-    return value.map((item) => transformValue(item));
-  }
-
-  return transformValue(value);
-};
+export const transformgRPCToData = (value: any) => transformValue(value);
 
 const transformValue = (value: any) => {
   if (value === null || value === undefined) {
@@ -20,6 +14,10 @@ const transformValue = (value: any) => {
 
   if (Long.isLong(value)) {
     return value.toNumber();
+  }
+
+  if (Array.isArray(value)) {
+    return value.map((item) => transformValue(item));
   }
 
   if (typeof value === "object") {

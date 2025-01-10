@@ -10419,12 +10419,7 @@ Long.fromBytesBE = function fromBytesBE(bytes, unsigned) {
 var long_default = Long;
 
 // lib/utils/transform-grpc-data-to-data.util.ts
-var transformgRPCToData = (value) => {
-  if (Array.isArray(value)) {
-    return value.map((item) => transformValue(item));
-  }
-  return transformValue(value);
-};
+var transformgRPCToData = (value) => transformValue(value);
 var transformValue = (value) => {
   if (value === null || value === void 0) {
     return value;
@@ -10434,6 +10429,9 @@ var transformValue = (value) => {
   }
   if (long_default.isLong(value)) {
     return value.toNumber();
+  }
+  if (Array.isArray(value)) {
+    return value.map((item) => transformValue(item));
   }
   if (typeof value === "object") {
     const transformed = {};
