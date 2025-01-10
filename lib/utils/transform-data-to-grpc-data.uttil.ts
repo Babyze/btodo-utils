@@ -1,12 +1,6 @@
 import { Timestamp } from "../timestamp";
 
-export const transformDataTogRPCData = (value: any) => {
-  if (Array.isArray(value)) {
-    return value.map((item) => transformValue(item));
-  }
-
-  return transformValue(value);
-};
+export const transformDataTogRPCData = (value: any) => transformValue(value);
 
 const transformValue = (value: any) => {
   if (value === null || value === undefined) {
@@ -15,6 +9,10 @@ const transformValue = (value: any) => {
 
   if (value instanceof Date) {
     return new Timestamp(value);
+  }
+
+  if (Array.isArray(value)) {
+    return value.map((item) => transformValue(item));
   }
 
   if (typeof value === "object") {

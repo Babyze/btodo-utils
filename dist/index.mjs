@@ -10526,18 +10526,16 @@ var PasswordUtils = {
 };
 
 // lib/utils/transform-data-to-grpc-data.uttil.ts
-var transformDataTogRPCData = (value) => {
-  if (Array.isArray(value)) {
-    return value.map((item) => transformValue2(item));
-  }
-  return transformValue2(value);
-};
+var transformDataTogRPCData = (value) => transformValue2(value);
 var transformValue2 = (value) => {
   if (value === null || value === void 0) {
     return value;
   }
   if (value instanceof Date) {
     return new Timestamp(value);
+  }
+  if (Array.isArray(value)) {
+    return value.map((item) => transformValue2(item));
   }
   if (typeof value === "object") {
     const transformed = {};
