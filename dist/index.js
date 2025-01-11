@@ -10460,6 +10460,7 @@ var transformValue = (value) => {
     return value.map((item) => transformValue(item));
   }
   if (typeof value === "object") {
+    if (Object.keys(value).length === 0) return [];
     const transformed = {};
     for (const key of Object.keys(value)) {
       transformed[key] = transformValue(value[key]);

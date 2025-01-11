@@ -21,6 +21,7 @@ const transformValue = (value: any) => {
   }
 
   if (typeof value === "object") {
+    if (Object.keys(value).length === 0) return [];
     const transformed: any = {};
     for (const key of Object.keys(value)) {
       transformed[key] = transformValue(value[key]);
